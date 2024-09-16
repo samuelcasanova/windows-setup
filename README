@@ -14,3 +14,7 @@ Steps:
   - .gitconfig
 - Start a Git Bash shell
 - Clone this repo with: git clone git@github.com:samuelcasanova/windows-setup.git
+
+2) Enable executing local scripts on Powershell
+- Open a Powershell console as admin
+- Run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
