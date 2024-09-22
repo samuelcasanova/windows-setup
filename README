@@ -6,7 +6,7 @@ Steps:
 
 1) Install Git for Windows
 - Go to https://git-scm.com/download/win and install the latest version
-- Leave all options as default except the default editor = notepad
+- Leave all options as default except the default editor = notepad 
 - Copy the SSH key (pub and private) to ~/.ssh
 - Download these files into the home directory ~:
   - .bashrc
@@ -18,3 +18,9 @@ Steps:
 2) Enable executing local scripts on Powershell
 - Open a Powershell console as admin
 - Run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+
+3) Clone the secondbrain repo
+- Go to Github and generate a Personal Access Token to the repo in the Developer Options section
+- Open a Git CMD console
+- Clone the repo with HTTPS option: git clone https://samuelcasanova@github.com/samuelcasanova/secondbrain.git
+- If a Windows Credential Manager window is opened, close it, the CLI will ask your password, enter the Personal Access Token instead
