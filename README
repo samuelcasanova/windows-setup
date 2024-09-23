@@ -5,7 +5,7 @@ This repo has all the scripts to setup a personal Windows installation
 Steps:
 
 1) Install Git for Windows
-- Go to https://git-scm.com/download/win and install the latest version
+- Go to https://git-scm.com/download/win and install the latest version, or winget install git
 - Leave all options as default except the default editor = notepad 
 - Copy the SSH key (pub and private) to ~/.ssh
 - Download these files into the home directory ~:

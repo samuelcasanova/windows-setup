@@ -4,5 +4,3 @@ Read-Host "Copy the Personal Access Token and paste it when the CLI asks you for
 cd ~/git/
 git clone https://samuelcasanova@github.com/samuelcasanova/secondbrain.git
 
-Read-Host "Press enter to open a browser with the Obsidian downloads page. Download and install the latest version with default options"
-Start-Process "https://obsidian.md/download"
