@@ -1,0 +1,2 @@
+powercfg /import c:\Users\samue\git\windows-setup\install-software-scripts\support-files\custom-power-plan.pow be0be648-bdac-4150-8417-94d9684f7515
+powercfg /setactive be0be648-bdac-4150-8417-94d9684f7515
