@@ -1,5 +1,6 @@
 winget install "Google Chrome" --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install Obsidian --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
+winget install --id Microsoft.VisualStudioCode --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install "Microsoft Powertoys" --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install "7-Zip" --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install --id Microsoft.Office --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
@@ -11,4 +12,4 @@ winget install --id VideoLAN.VLC --silent --accept-package-agreements --accept-s
 winget install windirstat --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install --id Ditto.Ditto --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install --id calibre.calibre --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
-winget install --id th-ch.YouTubeMusic --silent --accept-package-agreements --accept-source-agreements --uninstall-previous 
+winget install --id th-ch.YouTubeMusic --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
