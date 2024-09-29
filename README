@@ -24,3 +24,11 @@ Steps:
 - Open a Git CMD console
 - Clone the repo with HTTPS option: git clone https://samuelcasanova@github.com/samuelcasanova/secondbrain.git
 - If a Windows Credential Manager window is opened, close it, the CLI will ask your password, enter the Personal Access Token instead
+
+4) Install all software with the script
+
+5) Login to Onedrive and choose folders: Almacén personal, Apps, mp3, OneNote, OwnVideos, Peques, Pictures, Samuel, temp
+
+6) Set Obsidian DB
+
+7) 

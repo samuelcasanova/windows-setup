@@ -1,0 +1,1 @@
+"C:\Program Files\KeePassXC\KeePassXC.exe" "C:\Users\samue\OneDrive\Apps\Keepass2Android\KeePassPasswords.kdbx"
