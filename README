@@ -25,14 +25,14 @@ Steps:
 - Clone the repo with HTTPS option: git clone https://samuelcasanova@github.com/samuelcasanova/secondbrain.git
 - If a Windows Credential Manager window is opened, close it, the CLI will ask your password, enter the Personal Access Token instead
 
-4) Install all software with the script
+4) Install and configure all the software with the scripts #10-30
 
 5) Login to Onedrive and choose folders: Almacén personal, Apps, mp3, OneNote, OwnVideos, Peques, Pictures, Samuel, temp
 
-6) Set Obsidian DB
+6) Open Obsidian to open folder c:\Users\samue\git\secondbrain
 
 7) TEMP: In Mouse Settings, set to display a short trail (in HP laptop this seems to remove the "The iommu has detected an error.". Ref: https://community.intel.com/t5/Graphics/Flickering-Black-Screen-Glitching-after-waking-from-Hibernation/td-p/1268565?profile.language=de)
 
 8) Go to language settings. Make sure you have English UK and Spanish installed. Inside English UK, install Spanish keyboard and remove the English default one. Set default language to English UK.
 
-10) Remove rare Documentum folder from Onedrive
+9) Execute the script 40 to configure folders

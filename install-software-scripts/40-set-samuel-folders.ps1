@@ -1,5 +1,8 @@
 ﻿$o = new-object -com shell.application
 $o.Namespace('C:\Users\samue\OneDrive\Samuel\Ocio personal\Proyectos Personales').Self.InvokeVerb("pintohome")
+$o.Namespace('C:\Users\samue\OneDrive\Peques').Self.InvokeVerb("pintohome")
+$o.Namespace('C:\Users\samue\OneDrive\Samuel\Desarrollo personal').Self.InvokeVerb("pintohome")
+$o.Namespace('C:\Users\samue\OneDrive\Samuel\Ocio personal').Self.InvokeVerb("pintohome")
 
 function Set-KnownFolderPath {
     Param (
