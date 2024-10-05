@@ -36,3 +36,17 @@ Steps:
 8) Go to language settings. Make sure you have English UK and Spanish installed. Inside English UK, install Spanish keyboard and remove the English default one. Set default language to English UK.
 
 9) Execute the script 40 to configure folders
+
+10) Go to Accounts > Other Users, add Alex, Victor and Judit accounts. All 3 are standard users.
+
+11) Login as Alex.
+
+12) Open Chrome and login with Alex Google account to sync everything.
+
+12) Open Onedrive and select to sync TBD
+    Problemas:
+        Alex no tiene permisos para acceder al repo de windows-setup y por tanto setear sus carpetas
+        Los links a los directorios compartidos no se pueden poner como documentos -> que cada uno tenga sus cosas y se acaba el puto problema de una vez
+        Copiados todos los documentos de Alex a su carpeta de documentos de onedrive, aunque ahora no apunte a sus documentos por el error anterior
+        Faltarán victor y judit también
+13) Execute the script #41 to set folders.
