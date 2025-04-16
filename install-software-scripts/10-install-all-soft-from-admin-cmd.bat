@@ -13,3 +13,4 @@ winget install windirstat --scope machine --silent --accept-package-agreements -
 winget install --id Ditto.Ditto --scope machine --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install --id calibre.calibre --scope machine --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
 winget install --id th-ch.YouTubeMusic --scope machine --silent --accept-package-agreements --accept-source-agreements --uninstall-previous
+winget install --id OBSProject.OBSStudio --scope machine --silent --accept-package-agreements --accept-source-agreements --uninstall-previous

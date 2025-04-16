@@ -27,15 +27,13 @@ Steps:
 
 4) Install and configure all the software with the scripts #10-30
 
-5) Login to Onedrive and choose folders: Almacén personal, Apps, mp3, OneNote, OwnVideos, Peques, Pictures, Samuel, temp
+5) Login to Onedrive and choose from settings "Sync & Backup", everything except Desktop.
 
 6) Open Obsidian to open folder c:\Users\samue\git\secondbrain
 
 7) TEMP: In Mouse Settings, set to display a short trail (in HP laptop this seems to remove the "The iommu has detected an error.". Ref: https://community.intel.com/t5/Graphics/Flickering-Black-Screen-Glitching-after-waking-from-Hibernation/td-p/1268565?profile.language=de)
 
 8) Go to language settings. Make sure you have English UK and Spanish installed. Inside English UK, install Spanish keyboard and remove the English default one. Set default language to English UK.
-
-9) Execute the script 40 to configure folders
 
 10) Go to Accounts > Other Users, add Alex, Victor and Judit accounts. All 3 are standard users.
 
@@ -52,3 +50,5 @@ Steps:
 13) Execute the script #41 to set folders.
 
 14) Unrar Onedrive/Software/Lightroom/Adobe Lightroom Classic ...rar. Execute the setup inside. Once installed don't launch. Copy the addfwrs.bat file to the root installation folder in c:\Program files\adobe. Open an admin cmd and execute the script with a name argument: addfwrs.bat adobe. This includes the adobe exe files to the windows firewall to block them using any Internet resource. Source: https://www.artistapirata.com/adobe-lightroom-classic-cc-2023-v12-win-mac/
+
+15) In Keepass disable option to start the app at system startup
