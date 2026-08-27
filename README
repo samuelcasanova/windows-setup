@@ -25,29 +25,58 @@ Steps:
 - Clone the repo with HTTPS option: git clone https://samuelcasanova@github.com/samuelcasanova/secondbrain.git
 - If a Windows Credential Manager window is opened, close it, the CLI will ask your password, enter the Personal Access Token instead
 
-4) Install and configure all the software with the scripts #10-30
+4) Uninstall Onedrive if installed by default
 
-5) Login to Onedrive and choose from settings "Sync & Backup", everything except Desktop.
+5) Install and configure all the software with the scripts #10-30
 
 6) Open Obsidian to open folder c:\Users\samue\git\secondbrain
 
-7) TEMP: In Mouse Settings, set to display a short trail (in HP laptop this seems to remove the "The iommu has detected an error.". Ref: https://community.intel.com/t5/Graphics/Flickering-Black-Screen-Glitching-after-waking-from-Hibernation/td-p/1268565?profile.language=de)
-
-8) Go to language settings. Make sure you have English UK and Spanish installed. Inside English UK, install Spanish keyboard and remove the English default one. Set default language to English UK.
+7) Go to language settings. Make sure you have English UK and Spanish installed. Inside English UK, install Spanish keyboard and remove the English default one. Set default language to English UK.
 
 10) Go to Accounts > Other Users, add Alex, Victor and Judit accounts. All 3 are standard users.
 
-11) Login as Alex.
+11) Login as Alex. Open Chrome and login with Alex Google account to sync everything.
 
-12) Open Chrome and login with Alex Google account to sync everything.
+12) Do the same with Victor.
 
-12) Open Onedrive and select to sync TBD
-    Problemas:
-        Alex no tiene permisos para acceder al repo de windows-setup y por tanto setear sus carpetas
-        Los links a los directorios compartidos no se pueden poner como documentos -> que cada uno tenga sus cosas y se acaba el puto problema de una vez
-        Copiados todos los documentos de Alex a su carpeta de documentos de onedrive, aunque ahora no apunte a sus documentos por el error anterior
-        Faltarán victor y judit también
-13) Execute the script #41 to set folders.
+13) Set each account's Documents/Music/Pictures/Videos to the homeserver Samba shares.
+- Logged in as that account, in a NORMAL (non-admin) Powershell, from install-software-scripts:
+  .\40-set-user-folders.ps1 -User judit
+- Valid users: samuel, judit, victor, alex. It asks for that user's Samba password (the one in
+  Vaultwarden), stores it with cmdkey, redirects the four folders, pins to Quick Access and
+  restarts Explorer.
+- Add -WhatIf first to see what it would do, or -SkipCredentials to let Windows prompt for the
+  share password on first access instead.
+- Run it once per account, while you are logged in as that account (steps 11-12 already have you
+  logging into each one). It only ever changes the current user's folders; it refuses to run
+  elevated, because an admin shell is a different user context and would redirect the wrong profile.
+- Share paths live in support-files/network-folders.psd1 - that is the only file to edit if the
+  server layout changes.
+- A backup of the previous settings is written to %LOCALAPPDATA%\windows-setup\backup\ before any
+  change. To roll back, double-click that .reg file and restart Explorer.
+
+Why a script instead of the normal Explorer dialog:
+- The supported way to move a known folder is Explorer > right-click Documents > Properties >
+  Location > Move. On Windows 11 HOME that always fails with "No se puede mover la carpeta porque
+  hay una carpeta no redirigible en la misma ubicacion. Acceso denegado."
+- The cause is an edition limitation, not the Samba setup: Home has no Offline Files component
+  (CscService), which Known Folder Move depends on for its target validation. Confirm on any
+  machine with:
+    systeminfo | findstr /B /C:"OS Name"
+    sc query CscService
+  If it says Home and CscService does not exist, that is why. Windows 11 Pro would restore the
+  native dialog, but the script does not need it.
+- The script calls SHSetKnownFolderPath (the API the dialog sits on top of, minus the content move
+  and the CscService validation). Whether that succeeds against a UNC path on Home is unproven, so
+  the script reads the registry back afterwards and falls back to writing the User Shell Folders /
+  Shell Folders values directly - the method that is known to work. It prints "api" or "registry"
+  per folder so you can see which one won.
+- If it reports "registry", Explorer labels the folder by the last component of the path rather
+  than "Documents". The share layout already accounts for that: the real redirect target is one
+  level below the share root and is literally named Documents or Music, e.g.
+  \\192.168.1.2\Samuel\Documents and \\192.168.1.2\Music\samuel\Music. Pictures and Videos are
+  plain shares, so they show the share name.
+- Server-side share layout and access rules: see the homeserver repo's README.md, Samba step.
 
 14) Unrar Onedrive/Software/Lightroom/Adobe Lightroom Classic ...rar, password: www.artistapirata.com. Execute the setup inside. Once installed don't launch. Copy the addfwrs.bat file to the root installation folder in c:\Program files\adobe. Open an admin cmd and execute the script with a name argument: addfwrs.bat adobe. This includes the adobe exe files to the windows firewall to block them using any Internet resource. Source: https://www.artistapirata.com/adobe-lightroom-classic-cc-2023-v12-win-mac/
 

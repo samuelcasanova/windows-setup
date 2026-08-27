@@ -100,8 +100,10 @@
         'Windows' = 'F38BF404-1D43-42F2-9305-67DE0B28FC23';
     }
     
-    # Define SHSetKnownFolderPath if it hasn't been defined already
-    $Type = ([System.Management.Automation.PSTypeName]'KnownFolders').Type
+    # Add-Type below creates SHSetKnownFolderPath.KnownFolders, so the cache probe must use that
+    # full name - probing bare 'KnownFolders' never hits, and the second Add-Type in a session
+    # throws "type already exists", which broke every call after the first.
+    $Type = ([System.Management.Automation.PSTypeName]'SHSetKnownFolderPath.KnownFolders').Type
     if (-not $Type) {
         $Signature = @'
 [DllImport("shell32.dll")]
@@ -110,11 +112,20 @@ public extern static int SHSetKnownFolderPath(ref Guid folderId, uint flags, Int
         $Type = Add-Type -MemberDefinition $Signature -Name 'KnownFolders' -Namespace 'SHSetKnownFolderPath' -PassThru
     }
     
-    # Validate the path
-    if (Test-Path $Path -PathType Container) {
-        # Call SHSetKnownFolderPath
-        return $Type::SHSetKnownFolderPath([ref]$KnownFolders[$KnownFolder], 0, 0, $Path)
-    } else {
+    if (-not (Test-Path $Path -PathType Container -ErrorAction SilentlyContinue)) {
+        # A UNC path that exists but has no authenticated session fails Test-Path the same way a
+        # missing one does; say so, because the fix is completely different (cmdkey, not mkdir).
+        if ($Path -like '\\*') {
+            throw "Cannot reach '$Path'. If the share exists, there is probably no stored credential for it yet - run cmdkey /add first."
+        }
         throw New-Object System.IO.DirectoryNotFoundException "Could not find part of the path $Path."
+    }
+
+    # Cast to a real Guid first: the P/Invoke takes `ref Guid`, and passing the table's string
+    # straight through relies on marshaling coercion that is not worth depending on.
+    $FolderId = [Guid]$KnownFolders[$KnownFolder]
+    $Hresult = $Type::SHSetKnownFolderPath([ref]$FolderId, 0, 0, $Path)
+    if ($Hresult -ne 0) {
+        throw ("SHSetKnownFolderPath failed for {0} -> '{1}' (HRESULT 0x{2:X8})." -f $KnownFolder, $Path, $Hresult)
     }
 }
